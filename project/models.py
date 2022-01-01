@@ -14,7 +14,7 @@ class ProjectUsers(models.Model):
         db_table = "User"
 
     def __str__(self):
-        return str(self.username)
+        return str(self.user.username)
 
 
 class ProjectModel(models.Model):
