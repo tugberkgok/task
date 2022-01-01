@@ -4,6 +4,7 @@ from project.models import ProjectModel, ProjectUsers
 from rest_framework.filters import SearchFilter
 from .paginations import SmallPagination
 from .permissions import IsOwnerOrIsAdminOrReadOnly, IsIsAdminOrReadOnly
+from rest_framework.permissions import IsAdminUser
 
 
 class ProjectCreateAPIView(generics.CreateAPIView):
@@ -45,3 +46,12 @@ class ProjectDeleteAPIView(generics.DestroyAPIView):
     serializer_class = ProjectModelSerializer
     queryset = ProjectModel.objects.all()
     lookup_field = 'slug'
+
+
+class ProjectUserUpdateAPIView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProjectUserSerializer
+    permission_classes = [IsAdminUser]
+    queryset = ProjectUsers.objects.all()
+
+
+
